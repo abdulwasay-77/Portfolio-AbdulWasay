@@ -1,244 +1,273 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>VaultX — AI-Powered Digital Vault | Abdul Wasay</title>
-<meta name="description" content="VaultX is a self-hosted, AES-256 encrypted desktop vault for passwords, documents, and notes. Built by Abdul Wasay with Python, FastAPI, and PyQt5.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../css/style.css">
-<script>window.__HOLOGRAM_MODE__ = "scroll-only";</script>
-<script src="/js/hologram.js" defer></script>
-<script src="/js/track-download.js" defer></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VaultX — AI-Powered Digital Vault | Abdul Wasay</title>
+  <meta name="description"
+    content="VaultX is a self-hosted, AES-256 encrypted desktop vault for passwords, documents, and notes. Built by Abdul Wasay with Python, FastAPI, and PyQt5.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <script>window.__HOLOGRAM_MODE__ = "scroll-only";</script>
+  <script src="/js/hologram.js" defer></script>
+  <script src="/js/track-download.js" defer></script>
 </head>
+
 <body class="is-vault-theme">
 
-<!-- Ambient Vault-toned Blobs -->
-<div class="bg-blobs">
-  <div class="blob blob-1 float-soft" style="background: radial-gradient(circle, #D8D2FF, transparent 70%);"></div>
-  <div class="blob blob-2 float-soft-delay" style="background: radial-gradient(circle, #C7F0FF, transparent 70%);"></div>
-  <div class="blob blob-3 float-soft-delay-2"></div>
-</div>
-
-<!-- Navbar -->
-<nav class="navbar">
-  <div class="container">
-    <a href="../index.html" class="brand">
-      <span class="brand-mark" style="background: var(--grad-vault);"><img src="/assets/profile.jpg" alt=""></span> Abdul Wasay
-    </a>
-    <ul class="nav-links">
-      <li><a href="../index.html#about">About</a></li>
-      <li><a href="../index.html#skills">Skills</a></li>
-      <li><a href="../index.html#projects">Projects</a></li>
-      <li><a href="../index.html#contact">Contact</a></li>
-    </ul>
-    <button class="nav-toggle" aria-label="Toggle menu">&#9776;</button>
-  </div>
-</nav>
-
-<!-- Back Button -->
-<a href="../index.html#projects" class="back-btn-float glance">&larr; Back to Projects</a>
-
-<!-- ============ HERO ============ -->
-<header class="detail-hero">
-  <div class="container">
-    <div class="breadcrumb reveal reveal-slide in-view">
-      <a href="../index.html#projects">Projects</a> / VaultX
+  <!-- Ambient Vault-toned Blobs -->
+  <div class="bg-blobs">
+    <div class="blob blob-1 float-soft" style="background: radial-gradient(circle, #D8D2FF, transparent 70%);"></div>
+    <div class="blob blob-2 float-soft-delay" style="background: radial-gradient(circle, #C7F0FF, transparent 70%);">
     </div>
-
-    <h1 class="reveal reveal-slide in-view">VaultX — AI-Powered Digital Vault</h1>
-    <p class="lead reveal reveal-slide in-view">
-      A secure desktop application for safely storing passwords, private documents, and notes in a single AES-256 encrypted vault — similar to LastPass or Bitwarden, but self-hosted and fully under your control. Unlike the other projects here, VaultX is finished, packaged, and ready to install.
-    </p>
-
-    <!-- Quick Stats -->
-    <div class="detail-stats reveal reveal-slide in-view">
-      <div class="detail-stat"><strong>AES-256</strong><span>Encryption</span></div>
-      <div class="detail-stat"><strong>3-Tier</strong><span>Architecture</span></div>
-      <div class="detail-stat"><strong>6+</strong><span>Core Features</span></div>
-      <div class="detail-stat"><strong>Windows</strong><span>Ready to Install</span></div>
-    </div>
-
-    <div class="detail-ctas reveal reveal-slide in-view">
-      <a href="#download" class="btn btn-vault glance pulse-glow">⬇ Download for Windows</a>
-      <a href="https://github.com/abdulwasay-77/VaultX-AI-Powered-Digital-Vault" target="_blank" rel="noopener" class="btn btn-ghost glance">View Repository</a>
-    </div>
+    <div class="blob blob-3 float-soft-delay-2"></div>
   </div>
-</header>
 
-<!-- ============ THE PROBLEM ============ -->
-<section class="detail-section">
-  <div class="container">
-    <h2 class="reveal reveal-slide">The Problem</h2>
-    <p class="reveal reveal-slide" style="max-width:760px; font-size: 1.05rem; line-height: 1.75;">
-      Modern password managers push cloud sync and browser autofill by default — which isn't always what people want for their most sensitive data. VaultX is a locally-hosted, single-user security vault: a desktop client, a backend REST API, and a relational database all running on your own machine — giving you a private place to store passwords, documents, and notes without handing them to a third-party cloud.
-    </p>
-  </div>
-</section>
-
-<!-- ============ KEY FEATURES ============ -->
-<section class="detail-section">
-  <div class="container">
-    <h2 class="reveal reveal-slide">Key Features</h2>
-    <div class="feature-grid stagger">
-
-      <div class="clay-card feature-item shadow-deepen">
-        <span class="dot"></span>
-        <div>
-          <h4>Password Vault</h4>
-          <p>Store, retrieve, update, and delete password entries with automatic strength analysis, reused-password detection, and a configurable password generator.</p>
-        </div>
-      </div>
-
-      <div class="clay-card feature-item shadow-deepen">
-        <span class="dot"></span>
-        <div>
-          <h4>Encrypted Document Vault</h4>
-          <p>Upload, preview, download, and delete documents up to 500 MB, with automatic sensitivity classification (Low / Medium / High) based on filename keywords.</p>
-        </div>
-      </div>
-
-      <div class="clay-card feature-item shadow-deepen">
-        <span class="dot"></span>
-        <div>
-          <h4>Rich-Text Notes</h4>
-          <p>Create, edit, and organize notes into folders, with full move-between-folders support and version history.</p>
-        </div>
-      </div>
-
-      <div class="clay-card feature-item shadow-deepen">
-        <span class="dot"></span>
-        <div>
-          <h4>Smart Search</h4>
-          <p>A single search bar queries passwords, documents, and notes simultaneously, ranked by relevance, with live suggestions as you type.</p>
-        </div>
-      </div>
-
-      <div class="clay-card feature-item shadow-deepen">
-        <span class="dot"></span>
-        <div>
-          <h4>Risk Dashboard</h4>
-          <p>A vault-wide health score, plus lists of weak and reused passwords, so you always know where you're exposed.</p>
-        </div>
-      </div>
-
-      <div class="clay-card feature-item shadow-deepen">
-        <span class="dot"></span>
-        <div>
-          <h4>Backup &amp; Restore</h4>
-          <p>Export your entire vault into a single encrypted backup file, and restore it in overwrite or smart-merge mode, with backup integrity verification.</p>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- ============ HOW IT'S BUILT ============ -->
-<section class="detail-section">
-  <div class="container">
-    <h2 class="reveal reveal-slide">How It's Built</h2>
-    <div class="arch-list stagger">
-
-      <div class="clay-card arch-item shadow-deepen">
-        <span class="arch-num">01</span>
-        <div>
-          <h4>Desktop Client</h4>
-          <p>A Windows desktop application providing the full graphical interface — dashboard, password vault, document vault, notes, search, risk dashboard, and backup screens. Built with Python and PyQt5 for native desktop feel.</p>
-        </div>
-      </div>
-
-      <div class="clay-card arch-item shadow-deepen">
-        <span class="arch-num">02</span>
-        <div>
-          <h4>Backend REST API</h4>
-          <p>A FastAPI REST API handling authentication, encryption/decryption, business rules, and request validation. All cryptographic operations happen exclusively on the backend — never in the client — using AES-256 with per-entry initialization vectors and JWT-based session management.</p>
-        </div>
-      </div>
-
-      <div class="clay-card arch-item shadow-deepen">
-        <span class="arch-num">03</span>
-        <div>
-          <h4>Relational Database + File Storage</h4>
-          <p>Stores user accounts and encrypted entries in a normalized relational schema. The file system separately stores encrypted document files and backup archives, each protected with a unique IV. Nothing is stored or transmitted in plaintext.</p>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- ============ TECH STACK ============ -->
-<section class="detail-section">
-  <div class="container">
-    <h2 class="reveal reveal-slide">Tech Stack</h2>
-    <div class="stack-pills reveal reveal-slide">
-      <span class="pill jiggle-hover">Python</span>
-      <span class="pill jiggle-hover">PyQt5 / Desktop GUI</span>
-      <span class="pill jiggle-hover">FastAPI</span>
-      <span class="pill jiggle-hover">AES-256 Encryption</span>
-      <span class="pill jiggle-hover">JWT Authentication</span>
-      <span class="pill jiggle-hover">SQLite / SQLAlchemy</span>
-      <span class="pill jiggle-hover">Flutter (Mobile Companion)</span>
-      <span class="pill jiggle-hover">REST API Design</span>
-    </div>
-  </div>
-</section>
-
-<!-- ============ DOWNLOAD PANEL ============ -->
-<section class="detail-section" id="download">
-  <div class="container">
-    <div class="clay-card download-panel shadow-deepen reveal reveal-blob">
-      <h3>Download VaultX for Windows</h3>
-      <p>Get the installer and start securing your passwords, documents, and notes locally — no account with a third party required. All data stays on your machine.</p>
-      <a href="../downloads/VaultX-Installer.exe" download data-track="vaultx-download" class="btn btn-vault glance pulse-glow">
-        ⬇ Download Installer (.exe)
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="container">
+      <a href="../index.html" class="brand">
+        <span class="brand-mark" style="background: var(--grad-vault);"><img src="/assets/profile.jpg" alt=""></span>
+        Abdul Wasay
       </a>
+      <ul class="nav-links">
+        <li><a href="../index.html#about">About</a></li>
+        <li><a href="../index.html#skills">Skills</a></li>
+        <li><a href="../index.html#projects">Projects</a></li>
+        <li><a href="../index.html#contact">Contact</a></li>
+      </ul>
+      <button class="nav-toggle" aria-label="Toggle menu">&#9776;</button>
     </div>
+  </nav>
+
+  <!-- Back Button -->
+  <a href="../index.html#projects" class="back-btn-float glance">&larr; Back to Projects</a>
+
+  <!-- ============ HERO ============ -->
+  <header class="detail-hero">
+    <div class="container">
+      <div class="breadcrumb reveal reveal-slide in-view">
+        <a href="../index.html#projects">Projects</a> / VaultX
+      </div>
+
+      <h1 class="reveal reveal-slide in-view">VaultX — AI-Powered Digital Vault</h1>
+      <p class="lead reveal reveal-slide in-view">
+        A secure desktop application for safely storing passwords, private documents, and notes in a single AES-256
+        encrypted vault — similar to LastPass or Bitwarden, but self-hosted and fully under your control. Unlike the
+        other projects here, VaultX is finished, packaged, and ready to install.
+      </p>
+
+      <!-- Quick Stats -->
+      <div class="detail-stats reveal reveal-slide in-view">
+        <div class="detail-stat"><strong>AES-256</strong><span>Encryption</span></div>
+        <div class="detail-stat"><strong>3-Tier</strong><span>Architecture</span></div>
+        <div class="detail-stat"><strong>6+</strong><span>Core Features</span></div>
+        <div class="detail-stat"><strong>Windows</strong><span>Ready to Install</span></div>
+      </div>
+
+      <div class="detail-ctas reveal reveal-slide in-view">
+        <a href="#download" class="btn btn-vault glance pulse-glow">⬇ Download for Windows</a>
+        <a href="https://github.com/abdulwasay-77/VaultX-AI-Powered-Digital-Vault" target="_blank" rel="noopener"
+          class="btn btn-ghost glance">View Repository</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ============ THE PROBLEM ============ -->
+  <section class="detail-section">
+    <div class="container">
+      <h2 class="reveal reveal-slide">The Problem</h2>
+      <p class="reveal reveal-slide" style="max-width:760px; font-size: 1.05rem; line-height: 1.75;">
+        Modern password managers push cloud sync and browser autofill by default — which isn't always what people want
+        for their most sensitive data. VaultX is a locally-hosted, single-user security vault: a desktop client, a
+        backend REST API, and a relational database all running on your own machine — giving you a private place to
+        store passwords, documents, and notes without handing them to a third-party cloud.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============ KEY FEATURES ============ -->
+  <section class="detail-section">
+    <div class="container">
+      <h2 class="reveal reveal-slide">Key Features</h2>
+      <div class="feature-grid stagger">
+
+        <div class="clay-card feature-item shadow-deepen">
+          <span class="dot"></span>
+          <div>
+            <h4>Password Vault</h4>
+            <p>Store, retrieve, update, and delete password entries with automatic strength analysis, reused-password
+              detection, and a configurable password generator.</p>
+          </div>
+        </div>
+
+        <div class="clay-card feature-item shadow-deepen">
+          <span class="dot"></span>
+          <div>
+            <h4>Encrypted Document Vault</h4>
+            <p>Upload, preview, download, and delete documents up to 500 MB, with automatic sensitivity classification
+              (Low / Medium / High) based on filename keywords.</p>
+          </div>
+        </div>
+
+        <div class="clay-card feature-item shadow-deepen">
+          <span class="dot"></span>
+          <div>
+            <h4>Rich-Text Notes</h4>
+            <p>Create, edit, and organize notes into folders, with full move-between-folders support and version
+              history.</p>
+          </div>
+        </div>
+
+        <div class="clay-card feature-item shadow-deepen">
+          <span class="dot"></span>
+          <div>
+            <h4>Smart Search</h4>
+            <p>A single search bar queries passwords, documents, and notes simultaneously, ranked by relevance, with
+              live suggestions as you type.</p>
+          </div>
+        </div>
+
+        <div class="clay-card feature-item shadow-deepen">
+          <span class="dot"></span>
+          <div>
+            <h4>Risk Dashboard</h4>
+            <p>A vault-wide health score, plus lists of weak and reused passwords, so you always know where you're
+              exposed.</p>
+          </div>
+        </div>
+
+        <div class="clay-card feature-item shadow-deepen">
+          <span class="dot"></span>
+          <div>
+            <h4>Backup &amp; Restore</h4>
+            <p>Export your entire vault into a single encrypted backup file, and restore it in overwrite or smart-merge
+              mode, with backup integrity verification.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ HOW IT'S BUILT ============ -->
+  <section class="detail-section">
+    <div class="container">
+      <h2 class="reveal reveal-slide">How It's Built</h2>
+      <div class="arch-list stagger">
+
+        <div class="clay-card arch-item shadow-deepen">
+          <span class="arch-num">01</span>
+          <div>
+            <h4>Desktop Client</h4>
+            <p>A Windows desktop application providing the full graphical interface — dashboard, password vault,
+              document vault, notes, search, risk dashboard, and backup screens. Built with Python and PyQt5 for native
+              desktop feel.</p>
+          </div>
+        </div>
+
+        <div class="clay-card arch-item shadow-deepen">
+          <span class="arch-num">02</span>
+          <div>
+            <h4>Backend REST API</h4>
+            <p>A FastAPI REST API handling authentication, encryption/decryption, business rules, and request
+              validation. All cryptographic operations happen exclusively on the backend — never in the client — using
+              AES-256 with per-entry initialization vectors and JWT-based session management.</p>
+          </div>
+        </div>
+
+        <div class="clay-card arch-item shadow-deepen">
+          <span class="arch-num">03</span>
+          <div>
+            <h4>Relational Database + File Storage</h4>
+            <p>Stores user accounts and encrypted entries in a normalized relational schema. The file system separately
+              stores encrypted document files and backup archives, each protected with a unique IV. Nothing is stored or
+              transmitted in plaintext.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ TECH STACK ============ -->
+  <section class="detail-section">
+    <div class="container">
+      <h2 class="reveal reveal-slide">Tech Stack</h2>
+      <div class="stack-pills reveal reveal-slide">
+        <span class="pill jiggle-hover">Python</span>
+        <span class="pill jiggle-hover">PyQt5 / Desktop GUI</span>
+        <span class="pill jiggle-hover">FastAPI</span>
+        <span class="pill jiggle-hover">AES-256 Encryption</span>
+        <span class="pill jiggle-hover">JWT Authentication</span>
+        <span class="pill jiggle-hover">SQLite / SQLAlchemy</span>
+        <span class="pill jiggle-hover">Flutter (Mobile Companion)</span>
+        <span class="pill jiggle-hover">REST API Design</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ DOWNLOAD PANEL ============ -->
+  <section class="detail-section" id="download">
+    <div class="container">
+      <div class="clay-card download-panel shadow-deepen reveal reveal-blob">
+        <h3>Download VaultX for Windows</h3>
+        <p>Get the installer and start securing your passwords, documents, and notes locally — no account with a third
+          party required. All data stays on your machine.</p>
+        <a href="https://w6sicxsas7pededr.public.blob.vercel-storage.com/VaultX-Installer.exe" download
+          data-track="vaultx-download" class="btn btn-vault glance pulse-glow">
+          ⬇ Download Installer (.exe)
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer GitHub CTA -->
+  <div class="detail-cta-footer reveal reveal-blob">
+    <a href="https://github.com/abdulwasay-77/VaultX-AI-Powered-Digital-Vault" target="_blank" rel="noopener"
+      class="btn btn-ghost glance">View Source on GitHub</a>
   </div>
-</section>
 
-<!-- Footer GitHub CTA -->
-<div class="detail-cta-footer reveal reveal-blob">
-  <a href="https://github.com/abdulwasay-77/VaultX-AI-Powered-Digital-Vault" target="_blank" rel="noopener" class="btn btn-ghost glance">View Source on GitHub</a>
-</div>
+  <footer>
+    <div class="container">
+      <p>&copy; <span data-year></span> Abdul Wasay. All rights reserved.</p>
+    </div>
+  </footer>
 
-<footer>
-  <div class="container">
-    <p>&copy; <span data-year></span> Abdul Wasay. All rights reserved.</p>
-  </div>
-</footer>
+  <script>
+    // Set year
+    document.querySelectorAll('[data-year]').forEach(el => el.textContent = new Date().getFullYear());
 
-<script>
-// Set year
-document.querySelectorAll('[data-year]').forEach(el => el.textContent = new Date().getFullYear());
+    // Scroll reveal
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('in-view'); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.reveal, .stagger').forEach(el => io.observe(el));
 
-// Scroll reveal
-const io = new IntersectionObserver((entries) => {
-  entries.forEach(e => {
-    if (e.isIntersecting) { e.target.classList.add('in-view'); io.unobserve(e.target); }
-  });
-}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-document.querySelectorAll('.reveal, .stagger').forEach(el => io.observe(el));
+    // Mouse spotlight on feature/arch/download cards
+    document.querySelectorAll('.feature-item, .arch-item, .download-panel').forEach(card => {
+      card.addEventListener('mousemove', e => {
+        const r = card.getBoundingClientRect();
+        card.style.setProperty('--mouse-x', `${e.clientX - r.left}px`);
+        card.style.setProperty('--mouse-y', `${e.clientY - r.top}px`);
+      });
+    });
 
-// Mouse spotlight on feature/arch/download cards
-document.querySelectorAll('.feature-item, .arch-item, .download-panel').forEach(card => {
-  card.addEventListener('mousemove', e => {
-    const r = card.getBoundingClientRect();
-    card.style.setProperty('--mouse-x', `${e.clientX - r.left}px`);
-    card.style.setProperty('--mouse-y', `${e.clientY - r.top}px`);
-  });
-});
-
-// Mobile nav toggle
-const toggle = document.querySelector('.nav-toggle');
-const links = document.querySelector('.nav-links');
-if (toggle && links) {
-  toggle.addEventListener('click', () => links.classList.toggle('nav-open'));
-  document.querySelectorAll('.nav-links a').forEach(a => a.addEventListener('click', () => links.classList.remove('nav-open')));
-}
-</script>
+    // Mobile nav toggle
+    const toggle = document.querySelector('.nav-toggle');
+    const links = document.querySelector('.nav-links');
+    if (toggle && links) {
+      toggle.addEventListener('click', () => links.classList.toggle('nav-open'));
+      document.querySelectorAll('.nav-links a').forEach(a => a.addEventListener('click', () => links.classList.remove('nav-open')));
+    }
+  </script>
 </body>
+
 </html>
