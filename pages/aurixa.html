@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AURIXA — Intelligent Expense Governance | Abdul Wasay</title>
+<meta name="description" content="AURIXA is an intelligent digital expense governance platform backed by a 29-table Oracle 21c schema, AI anomaly detection, and multi-currency subscription tracking. Built by Abdul Wasay.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+<style>
+  /* AURIXA — Violet-Teal theme overrides for detail page */
+  .feature-item .dot {
+    background: var(--grad-primary);
+    box-shadow: 0 0 10px rgba(108, 92, 231, 0.45);
+  }
+  .feature-item::before {
+    background: radial-gradient(320px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(108, 92, 231, 0.1), transparent 80%);
+  }
+  .feature-item:hover h4 { color: var(--violet-deep); }
+
+  .arch-item::before {
+    background: radial-gradient(320px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(108, 92, 231, 0.1), transparent 80%);
+  }
+  .arch-item:hover h4 { color: var(--violet-deep); }
+  .arch-num {
+    background: var(--grad-primary);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .detail-section h2::after { background: var(--grad-primary); }
+
+  .download-panel {
+    background: linear-gradient(135deg, rgba(108, 92, 231, 0.06), rgba(0, 194, 168, 0.06));
+    border-color: rgba(108, 92, 231, 0.18);
+  }
+  .download-panel::before {
+    background: radial-gradient(380px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(108, 92, 231, 0.1), transparent 80%);
+  }
+
+  .detail-stat strong {
+    background: var(--grad-primary);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  /* Violet gradient hero title */
+  .detail-hero h1 {
+    background: var(--grad-primary);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+</style>
+<script>window.__HOLOGRAM_MODE__ = "scroll-only";</script>
+<script src="/js/hologram.js" defer></script>
+</head>
+<body>
+
+<!-- Ambient Violet-Teal Blobs -->
+<div class="bg-blobs">
+  <div class="blob blob-1 float-soft"></div>
+  <div class="blob blob-2 float-soft-delay"></div>
+  <div class="blob blob-3 float-soft-delay-2"></div>
+</div>
+
+<!-- Navbar -->
+<nav class="navbar">
+  <div class="container">
+    <a href="../index.html" class="brand">
+      <span class="brand-mark"><img src="/assets/profile.jpg" alt=""></span> Abdul Wasay
+    </a>
+    <ul class="nav-links">
+      <li><a href="../index.html#about">About</a></li>
+      <li><a href="../index.html#skills">Skills</a></li>
+      <li><a href="../index.html#projects">Projects</a></li>
+      <li><a href="../index.html#contact">Contact</a></li>
+    </ul>
+    <button class="nav-toggle" aria-label="Toggle menu">&#9776;</button>
+  </div>
+</nav>
+
+<!-- Back Button -->
+<a href="../index.html#projects" class="back-btn-float glance">&larr; Back to Projects</a>
+
+<!-- ============ HERO ============ -->
+<header class="detail-hero">
+  <div class="container">
+    <div class="breadcrumb reveal reveal-slide in-view">
+      <a href="../index.html#projects">Projects</a> / AURIXA
+    </div>
+
+    <h1 class="reveal reveal-slide in-view">AURIXA — Intelligent Digital Expense Governance</h1>
+    <p class="lead reveal reveal-slide in-view">
+      An intelligent digital expense governance and financial behavior analytics platform. AURIXA helps users track subscriptions across currencies and billing cycles, catches unusual spending with AI, and is backed by a fully normalized Oracle 21c relational database with materialized views, PL/SQL packages, and a FastAPI REST layer.
+    </p>
+
+    <!-- Quick Stats -->
+    <div class="detail-stats reveal reveal-slide in-view">
+      <div class="detail-stat"><strong>29</strong><span>DB Tables</span></div>
+      <div class="detail-stat"><strong>55+</strong><span>Indexes</span></div>
+      <div class="detail-stat"><strong>8</strong><span>API Routers</span></div>
+      <div class="detail-stat"><strong>4</strong><span>Currencies</span></div>
+    </div>
+
+    <div class="detail-ctas reveal reveal-slide in-view">
+      <a href="https://github.com/abdulwasay-77/Aurixa---Intelligent-Digital-Expense-Governance-System" target="_blank" rel="noopener" class="btn btn-primary glance">View Repository</a>
+      <a href="../index.html#projects" class="btn btn-ghost glance">&larr; Back to Projects</a>
+    </div>
+  </div>
+</header>
+
+<!-- ============ THE PROBLEM ============ -->
+<section class="detail-section">
+  <div class="container">
+    <h2 class="reveal reveal-slide">The Problem</h2>
+    <p class="reveal reveal-slide" style="max-width:760px; font-size: 1.05rem; line-height: 1.75;">
+      Users subscribing to a growing number of digital services — streaming, SaaS tools, cloud storage, AI tools — lose track of what they collectively spend and when each renews. Existing personal finance tools are either too generic or too narrow, lacking subscription-specific intelligence like usage tracking, price-history, renewal forecasting, and behavioral anomaly detection. AURIXA closes that gap by combining rigorous relational database design with Oracle's enterprise features and a real machine learning engine.
+    </p>
+  </div>
+</section>
+
+<!-- ============ KEY FEATURES ============ -->
+<section class="detail-section">
+  <div class="container">
+    <h2 class="reveal reveal-slide">Key Features</h2>
+    <div class="feature-grid stagger">
+
+      <div class="clay-card feature-item shadow-deepen">
+        <span class="dot"></span>
+        <div>
+          <h4>Subscription &amp; Billing Tracking</h4>
+          <p>Full CRUD for subscriptions across 10 expense categories, with automated billing-cycle and price-history tracking via database triggers.</p>
+        </div>
+      </div>
+
+      <div class="clay-card feature-item shadow-deepen">
+        <span class="dot"></span>
+        <div>
+          <h4>AI Anomaly Detection — RiskRadar</h4>
+          <p>Every transaction is evaluated by a per-user Isolation Forest model to flag unusual spending, tuned to a 2% contamination rate to avoid false positives.</p>
+        </div>
+      </div>
+
+      <div class="clay-card feature-item shadow-deepen">
+        <span class="dot"></span>
+        <div>
+          <h4>AI Recommendations Engine</h4>
+          <p>Personalized suggestions to cancel unused subscriptions, consolidate redundant services, or downgrade billing plans — with accept/dismiss actions and feedback loop.</p>
+        </div>
+      </div>
+
+      <div class="clay-card feature-item shadow-deepen">
+        <span class="dot"></span>
+        <div>
+          <h4>Multi-Currency Support</h4>
+          <p>Tracks spending across PKR, USD, EUR, and GBP with automatic conversion to the user's base currency throughout all analytics and reporting.</p>
+        </div>
+      </div>
+
+      <div class="clay-card feature-item shadow-deepen">
+        <span class="dot"></span>
+        <div>
+          <h4>Analytics Dashboard</h4>
+          <p>Spending patterns, category breakdowns, trend analysis, budget forecasts, and a financial health score — served from pre-computed materialized views for performance.</p>
+        </div>
+      </div>
+
+      <div class="clay-card feature-item shadow-deepen">
+        <span class="dot"></span>
+        <div>
+          <h4>Full Audit Trail</h4>
+          <p>Every INSERT, UPDATE, and DELETE on critical tables is captured at the trigger level — independent of the application layer — for compliance and debugging.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ SYSTEM ARCHITECTURE ============ -->
+<section class="detail-section">
+  <div class="container">
+    <h2 class="reveal reveal-slide">System Architecture</h2>
+    <div class="arch-list stagger">
+
+      <div class="clay-card arch-item shadow-deepen">
+        <span class="arch-num">01</span>
+        <div>
+          <h4>Oracle Database Layer</h4>
+          <p>29 fully normalized tables, 3 materialized views, 26 sequences, 5 triggers, and 55 indexes running on Oracle 21c XE. PL/SQL packages and Oracle Scheduler jobs handle business logic and periodic tasks entirely inside the database engine — keeping the application layer thin.</p>
+        </div>
+      </div>
+
+      <div class="clay-card arch-item shadow-deepen">
+        <span class="arch-num">02</span>
+        <div>
+          <h4>Python FastAPI Backend</h4>
+          <p>A modular REST API with 8 dedicated routers: auth, users, subscriptions, analytics, alerts, recommendations, wallet, and audit. Connects to Oracle via <code style="font-family: var(--font-mono); font-size: 0.85em; background: var(--clay-dark); padding: 2px 6px; border-radius: 4px;">python-oracledb</code> in thin mode — no Oracle Client installation required on the host machine.</p>
+        </div>
+      </div>
+
+      <div class="clay-card arch-item shadow-deepen">
+        <span class="arch-num">03</span>
+        <div>
+          <h4>Auth &amp; Security Layer</h4>
+          <p>JWT bearer token authentication with 15-minute access tokens and 7-day refresh tokens, stored hashed at rest with bcrypt. All protected endpoints require a valid access token — only registration and login are public routes.</p>
+        </div>
+      </div>
+
+      <div class="clay-card arch-item shadow-deepen">
+        <span class="arch-num">04</span>
+        <div>
+          <h4>scikit-learn ML Engine</h4>
+          <p>The RiskRadar system trains a per-user Isolation Forest model on transaction history and evaluates every new transaction for anomalies at the time of insertion. Models are persisted and retrained on a rolling window to stay accurate as spending patterns evolve.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ TECH STACK ============ -->
+<section class="detail-section">
+  <div class="container">
+    <h2 class="reveal reveal-slide">Tech Stack</h2>
+    <div class="stack-pills reveal reveal-slide">
+      <span class="pill jiggle-hover">Oracle Database 21c XE</span>
+      <span class="pill jiggle-hover">PL/SQL &amp; Triggers</span>
+      <span class="pill jiggle-hover">Python 3.11</span>
+      <span class="pill jiggle-hover">FastAPI</span>
+      <span class="pill jiggle-hover">python-oracledb</span>
+      <span class="pill jiggle-hover">scikit-learn</span>
+      <span class="pill jiggle-hover">Isolation Forest (ML)</span>
+      <span class="pill jiggle-hover">PyJWT &amp; bcrypt</span>
+      <span class="pill jiggle-hover">Pydantic v2</span>
+      <span class="pill jiggle-hover">Uvicorn</span>
+      <span class="pill jiggle-hover">pytest</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ GITHUB CTA PANEL ============ -->
+<section class="detail-section">
+  <div class="container">
+    <div class="clay-card download-panel shadow-deepen reveal reveal-blob">
+      <h3>Explore the Full Codebase</h3>
+      <p>The full source — schema DDL, PL/SQL packages, FastAPI routes, ML engine, and test suite — is available on GitHub.</p>
+      <a href="https://github.com/abdulwasay-77/Aurixa---Intelligent-Digital-Expense-Governance-System" target="_blank" rel="noopener" class="btn btn-primary glance">
+        View on GitHub
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <p>&copy; <span data-year></span> Abdul Wasay. All rights reserved.</p>
+  </div>
+</footer>
+
+<script>
+// Set year
+document.querySelectorAll('[data-year]').forEach(el => el.textContent = new Date().getFullYear());
+
+// Scroll reveal
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('in-view'); io.unobserve(e.target); }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.reveal, .stagger').forEach(el => io.observe(el));
+
+// Mouse spotlight on feature/arch/download cards
+document.querySelectorAll('.feature-item, .arch-item, .download-panel').forEach(card => {
+  card.addEventListener('mousemove', e => {
+    const r = card.getBoundingClientRect();
+    card.style.setProperty('--mouse-x', `${e.clientX - r.left}px`);
+    card.style.setProperty('--mouse-y', `${e.clientY - r.top}px`);
+  });
+});
+
+// Mobile nav toggle
+const toggle = document.querySelector('.nav-toggle');
+const links = document.querySelector('.nav-links');
+if (toggle && links) {
+  toggle.addEventListener('click', () => links.classList.toggle('nav-open'));
+  document.querySelectorAll('.nav-links a').forEach(a => a.addEventListener('click', () => links.classList.remove('nav-open')));
+}
+</script>
+</body>
+</html>

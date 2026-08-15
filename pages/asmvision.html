@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ASMVision — Interactive Assembly Visualizer | Abdul Wasay</title>
+<meta name="description" content="ASMVision is an interactive MIPS Assembly execution visualizer with a real x86 NASM backend compiled to a DLL and called via Python ctypes. Built by Abdul Wasay.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+<style>
+  /* ASMVision — Deep Teal / Systems theme */
+  :root {
+    --asm-teal:   #00C2A8;
+    --asm-green:  #00E5A0;
+    --asm-deep:   #007A6E;
+    --grad-asm: linear-gradient(135deg, #00C2A8 0%, #00E5A0 100%);
+  }
+
+  .detail-hero h1 {
+    background: var(--grad-asm);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .kicker {
+    color: var(--asm-deep);
+    background: rgba(0, 194, 168, 0.1);
+    border-color: rgba(0, 194, 168, 0.25);
+  }
+
+  .detail-section h2::after { background: var(--grad-asm); }
+
+  .feature-item .dot {
+    background: var(--grad-asm);
+    box-shadow: 0 0 10px rgba(0, 194, 168, 0.5);
+  }
+  .feature-item::before {
+    background: radial-gradient(320px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(0, 194, 168, 0.1), transparent 80%);
+  }
+  .feature-item:hover h4 { color: var(--asm-deep); }
+
+  .arch-item::before {
+    background: radial-gradient(320px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(0, 194, 168, 0.1), transparent 80%);
+  }
+  .arch-item:hover h4 { color: var(--asm-deep); }
+  .arch-num {
+    background: var(--grad-asm);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .download-panel {
+    background: linear-gradient(135deg, rgba(0, 194, 168, 0.07), rgba(0, 229, 160, 0.05));
+    border-color: rgba(0, 194, 168, 0.2);
+  }
+  .download-panel::before {
+    background: radial-gradient(380px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(0, 194, 168, 0.1), transparent 80%);
+  }
+
+  .detail-stat strong {
+    background: var(--grad-asm);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  /* ASM pill accent */
+  .pill:hover { color: var(--asm-deep); }
+
+  /* Inline code style */
+  .asm-code {
+    font-family: var(--font-mono);
+    font-size: 0.82em;
+    background: var(--clay-dark);
+    color: var(--asm-deep);
+    padding: 2px 7px;
+    border-radius: 5px;
+    border: 1px solid rgba(0, 194, 168, 0.2);
+  }
+
+  /* Layer strip indicator */
+  .layer-badge {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 3px 10px;
+    border-radius: var(--r-pill);
+    background: rgba(0, 194, 168, 0.12);
+    color: var(--asm-deep);
+    border: 1px solid rgba(0, 194, 168, 0.2);
+    margin-bottom: 6px;
+    display: block;
+    width: fit-content;
+  }
+</style>
+<script>window.__HOLOGRAM_MODE__ = "scroll-only";</script>
+<script src="/js/hologram.js" defer></script>
+</head>
+<body>
+
+<!-- Ambient Teal Blobs -->
+<div class="bg-blobs">
+  <div class="blob blob-1 float-soft" style="background: radial-gradient(circle, #B2F2E9, transparent 70%);"></div>
+  <div class="blob blob-2 float-soft-delay" style="background: radial-gradient(circle, #C5FFF0, transparent 70%);"></div>
+  <div class="blob blob-3 float-soft-delay-2"></div>
+</div>
+
+<!-- Navbar -->
+<nav class="navbar">
+  <div class="container">
+    <a href="../index.html" class="brand">
+      <span class="brand-mark" style="background: var(--grad-asm);"><img src="/assets/profile.jpg" alt=""></span> Abdul Wasay
+    </a>
+    <ul class="nav-links">
+      <li><a href="../index.html#about">About</a></li>
+      <li><a href="../index.html#skills">Skills</a></li>
+      <li><a href="../index.html#projects">Projects</a></li>
+      <li><a href="../index.html#contact">Contact</a></li>
+    </ul>
+    <button class="nav-toggle" aria-label="Toggle menu">&#9776;</button>
+  </div>
+</nav>
+
+<!-- Back Button -->
+<a href="../index.html#projects" class="back-btn-float glance">&larr; Back to Projects</a>
+
+<!-- ============ HERO ============ -->
+<header class="detail-hero">
+  <div class="container">
+    <div class="breadcrumb reveal reveal-slide in-view">
+      <a href="../index.html#projects">Projects</a> / ASMVision
+    </div>
+
+    <h1 class="reveal reveal-slide in-view">ASMVision — Interactive Assembly Language Visualizer</h1>
+    <p class="lead reveal reveal-slide in-view">
+      An interactive educational desktop app that loads MIPS Assembly files and visualizes their execution step by step — with every computation actually performed by a real x86 NASM Assembly backend compiled to a Windows DLL, not emulated in Python. A 5-layer architecture bridging high-level GUI all the way down to native machine instructions.
+    </p>
+
+    <!-- Quick Stats -->
+    <div class="detail-stats reveal reveal-slide in-view">
+      <div class="detail-stat"><strong>5</strong><span>Architecture Layers</span></div>
+      <div class="detail-stat"><strong>42</strong><span>ASM Functions</span></div>
+      <div class="detail-stat"><strong>32+</strong><span>MIPS Registers</span></div>
+      <div class="detail-stat"><strong>6</strong><span>Sample Programs</span></div>
+    </div>
+
+    <div class="detail-ctas reveal reveal-slide in-view">
+      <a href="https://github.com/abdulwasay-77/ASMVision-Assembly-Language-Project" target="_blank" rel="noopener" class="btn btn-primary glance" style="background: var(--grad-asm); box-shadow: 0 4px 18px rgba(0,194,168,0.35);">View Repository</a>
+      <a href="../index.html#projects" class="btn btn-ghost glance">&larr; Back to Projects</a>
+    </div>
+  </div>
+</header>
+
+<!-- ============ THE PROBLEM ============ -->
+<section class="detail-section">
+  <div class="container">
+    <h2 class="reveal reveal-slide">The Problem</h2>
+    <p class="reveal reveal-slide" style="max-width:760px; font-size: 1.05rem; line-height: 1.75;">
+      Learning MIPS Assembly is difficult without visual feedback. Traditional tools like MARS and SPIM are functional but offer limited interactivity and no clear separation between what the processor is doing and how that maps to source code. Existing simulators also run entirely in software with no connection to real assembly computation. ASMVision addresses this with a genuine x86 Assembly backend — every arithmetic, logical, and branch operation executes inside a real NASM-compiled function, giving students an accurate view of what's actually happening at the processor level.
+    </p>
+  </div>
+</section>
+
+<!-- ============ KEY FEATURES ============ -->
+<section class="detail-section">
+  <div class="container">
+    <h2 class="reveal reveal-slide">Key Features</h2>
+    <div class="feature-grid stagger">
+
+      <div class="clay-card feature-item shadow-deepen">
+        <span class="dot"></span>
+        <div>
+          <h4>Real-Time Register &amp; Memory View</h4>
+          <p>All 32 MIPS registers plus PC, HI, and LO are visualized live — with a gold flash animation on change — alongside a memory panel split into Data Segment and Stack views.</p>
+        </div>
+      </div>
+
+      <div class="clay-card feature-item shadow-deepen">
+        <span class="dot"></span>
+        <div>
+          <h4>Step &amp; Auto-Run Execution</h4>
+          <p>Step through one instruction at a time with <span class="asm-code">F10</span>, or auto-run with an adjustable speed slider ranging from 1000ms down to 50ms per instruction step.</p>
+        </div>
+      </div>
+
+      <div class="clay-card feature-item shadow-deepen">
+        <span class="dot"></span>
+        <div>
+          <h4>Breakpoint System</h4>
+          <p>Click the gutter next to any line to toggle a breakpoint. Auto-run pauses automatically when execution reaches a marked line — just like a real debugger.</p>
+        </div>
+      </div>
+
+      <div class="clay-card feature-item shadow-deepen">
+        <span class="dot"></span>
+        <div>
+          <h4>Syntax Highlighting &amp; Tooltips</h4>
+          <p>Full MIPS syntax coloring with hover tooltips on every supported opcode, explaining what the instruction does and how it affects registers — in plain English.</p>
+        </div>
+      </div>
+
+      <div class="clay-card feature-item shadow-deepen">
+        <span class="dot"></span>
+        <div>
+          <h4>Execution Statistics</h4>
+          <p>A breakdown of instructions executed by category — arithmetic, logical, branch, memory, jump, syscall — plus identification of the most-used register during the session.</p>
+        </div>
+      </div>
+
+      <div class="clay-card feature-item shadow-deepen">
+        <span class="dot"></span>
+        <div>
+          <h4>Six Built-In Sample Programs</h4>
+          <p>Factorial, Fibonacci, Array Sum, Bubble Sort, String Print, and Recursive Function — covering the full range of supported MIPS instructions ready to load and run immediately.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ 5-LAYER ARCHITECTURE ============ -->
+<section class="detail-section">
+  <div class="container">
+    <h2 class="reveal reveal-slide">System Architecture — 5 Layers</h2>
+    <div class="arch-list stagger">
+
+      <div class="clay-card arch-item shadow-deepen">
+        <span class="arch-num">01</span>
+        <div>
+          <span class="layer-badge">Assembly Layer</span>
+          <h4>x86 NASM Backend — <span class="asm-code">backend.asm</span></h4>
+          <p>x86-64 NASM Assembly compiled to a Windows DLL using the win64 calling convention. Exports 42 functions covering every arithmetic, logical, branch, and memory operation. This is what actually executes the computation — nothing is simulated in Python.</p>
+        </div>
+      </div>
+
+      <div class="clay-card arch-item shadow-deepen">
+        <span class="arch-num">02</span>
+        <div>
+          <span class="layer-badge">FFI Bridge Layer</span>
+          <h4>Python–Assembly Bridge — <span class="asm-code">bridge.py</span></h4>
+          <p>Loads <span class="asm-code">backend.dll</span> via <span class="asm-code">ctypes.CDLL</span>, declaring argument types and return types for every exported function so the rest of the codebase never touches ctypes directly. Acts as a typed interface contract between Python and native code.</p>
+        </div>
+      </div>
+
+      <div class="clay-card arch-item shadow-deepen">
+        <span class="arch-num">03</span>
+        <div>
+          <span class="layer-badge">Parser Layer</span>
+          <h4>MIPS Parser — <span class="asm-code">parser.py</span></h4>
+          <p>Two-pass parser: the first pass collects all labels and their line positions; the second pass tokenizes every instruction and builds the data segment from <span class="asm-code">.data</span> directives. Outputs a structured instruction list ready for the execution controller.</p>
+        </div>
+      </div>
+
+      <div class="clay-card arch-item shadow-deepen">
+        <span class="arch-num">04</span>
+        <div>
+          <span class="layer-badge">Execution Layer</span>
+          <h4>Execution Controller — <span class="asm-code">executor.py</span></h4>
+          <p>Maintains the complete register file (all 32 MIPS registers + PC, HI, LO), the memory model, and the breakpoint set. Dispatches each instruction to the Assembly backend via a six-hook callback system. Has zero UI dependency — fully testable standalone.</p>
+        </div>
+      </div>
+
+      <div class="clay-card arch-item shadow-deepen">
+        <span class="arch-num">05</span>
+        <div>
+          <span class="layer-badge">GUI Layer</span>
+          <h4>PyQt5 Desktop Frontend</h4>
+          <p>A dark-themed glassmorphism GUI built across six Qt modules: splash screen, main window, code panel (with syntax highlighter and gutter), register panel, memory panel, and console panel. The UI only reads from the executor — never drives computation directly.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ TECH STACK ============ -->
+<section class="detail-section">
+  <div class="container">
+    <h2 class="reveal reveal-slide">Tech Stack</h2>
+    <div class="stack-pills reveal reveal-slide">
+      <span class="pill jiggle-hover">NASM 3.01 (x86-64)</span>
+      <span class="pill jiggle-hover">GCC via MSYS2</span>
+      <span class="pill jiggle-hover">Windows DLL (win64 ABI)</span>
+      <span class="pill jiggle-hover">Python 3.x</span>
+      <span class="pill jiggle-hover">ctypes FFI</span>
+      <span class="pill jiggle-hover">PyQt5</span>
+      <span class="pill jiggle-hover">QPainter</span>
+      <span class="pill jiggle-hover">QSyntaxHighlighter</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ GITHUB CTA PANEL ============ -->
+<section class="detail-section">
+  <div class="container">
+    <div class="clay-card download-panel shadow-deepen reveal reveal-blob">
+      <h3>Explore the Full Source on GitHub</h3>
+      <p>The full codebase — NASM assembly source, bridge layer, parser, executor, PyQt5 GUI, and all six sample programs — is available on GitHub.</p>
+      <a href="https://github.com/abdulwasay-77/ASMVision-Assembly-Language-Project" target="_blank" rel="noopener" class="btn glance" style="background: var(--grad-asm); color: #fff; box-shadow: 0 4px 18px rgba(0,194,168,0.35);">
+        View on GitHub
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <p>&copy; <span data-year></span> Abdul Wasay. All rights reserved.</p>
+  </div>
+</footer>
+
+<script>
+// Set year
+document.querySelectorAll('[data-year]').forEach(el => el.textContent = new Date().getFullYear());
+
+// Scroll reveal
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('in-view'); io.unobserve(e.target); }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.reveal, .stagger').forEach(el => io.observe(el));
+
+// Mouse spotlight
+document.querySelectorAll('.feature-item, .arch-item, .download-panel').forEach(card => {
+  card.addEventListener('mousemove', e => {
+    const r = card.getBoundingClientRect();
+    card.style.setProperty('--mouse-x', `${e.clientX - r.left}px`);
+    card.style.setProperty('--mouse-y', `${e.clientY - r.top}px`);
+  });
+});
+
+// Mobile nav toggle
+const toggle = document.querySelector('.nav-toggle');
+const links = document.querySelector('.nav-links');
+if (toggle && links) {
+  toggle.addEventListener('click', () => links.classList.toggle('nav-open'));
+  document.querySelectorAll('.nav-links a').forEach(a => a.addEventListener('click', () => links.classList.remove('nav-open')));
+}
+</script>
+</body>
+</html>

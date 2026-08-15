@@ -1,0 +1,11 @@
+# Never commit the installer - it's private, hosted on Vercel Blob and
+# only ever linked from the download button, not from this repo
+downloads/
+
+# OS/editor junk
+.DS_Store
+Thumbs.db
+
+# Local env files (if you ever add any)
+.env
+.env.local

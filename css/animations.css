@@ -1,0 +1,132 @@
+/* ============================================================
+   ANIMATION LIBRARY — clay-pop, clay-sink, jiggle, float-soft,
+   blob-in, slide-up-fade, drop-bounce, glance, morph-shape
+   ============================================================ */
+
+/* ---------- Tactile & Squishy ---------- */
+
+@keyframes clay-pop {
+  0%   { transform: scale(1); }
+  40%  { transform: scale(0.94); }
+  70%  { transform: scale(1.04); }
+  100% { transform: scale(1); }
+}
+.clay-pop-active { animation: clay-pop 0.42s var(--ease-clay); }
+
+@keyframes jiggle {
+  0%, 100% { transform: rotate(0deg); }
+  25%      { transform: rotate(-2deg); }
+  75%      { transform: rotate(2deg); }
+}
+.jiggle-hover:hover { animation: jiggle 0.35s ease-in-out; }
+
+@keyframes float-soft {
+  0%, 100% { transform: translateY(0) translateX(0); }
+  50%      { transform: translateY(-18px) translateX(8px); }
+}
+.float-soft {
+  animation: float-soft 7s ease-in-out infinite;
+}
+.float-soft-delay {
+  animation: float-soft 9s ease-in-out infinite;
+  animation-delay: -3s;
+}
+.float-soft-delay-2 {
+  animation: float-soft 6s ease-in-out infinite;
+  animation-delay: -1.5s;
+}
+
+/* ---------- Entrance & Reveal ---------- */
+
+@keyframes blob-in {
+  0%   { opacity: 0; transform: scale(0.3) rotateY(-35deg) rotateX(10deg); border-radius: 50%; }
+  60%  { opacity: 1; transform: scale(1.05) rotateY(6deg) rotateX(-2deg); }
+  100% { opacity: 1; transform: scale(1) rotateY(0deg) rotateX(0deg); border-radius: var(--r-lg); }
+}
+
+@keyframes slide-up-fade {
+  0%   { opacity: 0; transform: translateY(46px) rotateX(-38deg) scale(0.94); transform-origin: bottom center; }
+  100% { opacity: 1; transform: translateY(0) rotateX(0deg) scale(1); transform-origin: bottom center; }
+}
+
+@keyframes drop-bounce {
+  0%   { opacity: 0; transform: translateY(-70px) rotateX(50deg); transform-origin: top center; }
+  55%  { opacity: 1; transform: translateY(8px) rotateX(-8deg); }
+  75%  { transform: translateY(-6px) rotateX(4deg); }
+  100% { transform: translateY(0) rotateX(0deg); }
+}
+
+.reveal {
+  opacity: 0;
+  perspective: 1400px;
+}
+.reveal.in-view.reveal-blob     { animation: blob-in 0.7s var(--ease-clay) forwards; }
+.reveal.in-view.reveal-slide    { animation: slide-up-fade 0.7s var(--ease-soft) forwards; }
+.reveal.in-view.reveal-drop     { animation: drop-bounce 0.8s var(--ease-clay) forwards; }
+
+/* staggered children */
+.stagger { perspective: 1400px; }
+.stagger > * { opacity: 0; }
+.stagger.in-view > *:nth-child(1) { animation: slide-up-fade 0.6s var(--ease-soft) 0.05s forwards; }
+.stagger.in-view > *:nth-child(2) { animation: slide-up-fade 0.6s var(--ease-soft) 0.15s forwards; }
+.stagger.in-view > *:nth-child(3) { animation: slide-up-fade 0.6s var(--ease-soft) 0.25s forwards; }
+.stagger.in-view > *:nth-child(4) { animation: slide-up-fade 0.6s var(--ease-soft) 0.35s forwards; }
+.stagger.in-view > *:nth-child(5) { animation: slide-up-fade 0.6s var(--ease-soft) 0.45s forwards; }
+.stagger.in-view > *:nth-child(6) { animation: slide-up-fade 0.6s var(--ease-soft) 0.55s forwards; }
+
+/* ---------- Interactive Micro-interactions ---------- */
+
+.shadow-deepen {
+  transition: box-shadow 0.35s var(--ease-soft), transform 0.35s var(--ease-soft), border-color 0.35s var(--ease-soft);
+  border: 2px solid transparent;
+}
+.shadow-deepen:hover {
+  box-shadow: var(--clay-shadow-hover), 0 0 0 1px rgba(108, 92, 231, 0.18), 0 0 30px 3px rgba(0, 194, 168, 0.32);
+  transform: translateY(-6px);
+  border-color: rgba(108, 92, 231, 0.3);
+}
+
+/* VaultX cards/panels get a coral glow instead of violet-teal */
+.is-vault.shadow-deepen:hover,
+.is-vault-theme .shadow-deepen:hover {
+  box-shadow: var(--clay-shadow-hover), 0 0 0 1px rgba(255, 107, 107, 0.22), 0 0 34px 4px rgba(255, 167, 81, 0.4);
+  border-color: rgba(255, 107, 107, 0.35);
+}
+
+/* glance: glossy light streak sweeping across on hover */
+.glance {
+  position: relative;
+  overflow: hidden;
+}
+.glance::after {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -60%;
+  width: 40%;
+  height: 200%;
+  background: linear-gradient(
+    100deg,
+    transparent 0%,
+    rgba(255,255,255,0.55) 50%,
+    transparent 100%
+  );
+  transform: rotate(20deg);
+  transition: left 0.6s var(--ease-soft);
+  pointer-events: none;
+}
+.glance:hover::after { left: 130%; }
+
+@keyframes morph-shape {
+  0%   { border-radius: var(--r-md); }
+  50%  { border-radius: 40% 60% 55% 45% / 50% 45% 55% 50%; }
+  100% { border-radius: var(--r-md); }
+}
+.morph-hover:hover { animation: morph-shape 1.4s var(--ease-soft); }
+
+/* pulsing glow for the VaultX download button */
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(255, 107, 107, 0.45), var(--clay-shadow-raised); }
+  50%      { box-shadow: 0 0 0 16px rgba(255, 107, 107, 0), var(--clay-shadow-raised); }
+}
+.pulse-glow { animation: pulse-glow 2.4s ease-in-out infinite; }

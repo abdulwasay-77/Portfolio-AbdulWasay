@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DiagnoSight AI — Medical Diagnostic Assistant | Abdul Wasay</title>
+<meta name="description" content="DiagnoSight AI is an AI-powered medical diagnostic assistant that analyzes X-rays, MRIs, and CT scans using TensorFlow deep learning, with PDF report generation and a support chatbot. Built by Abdul Wasay.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+<style>
+  /* DiagnoSight AI — Navy Blue / Medical Deep theme */
+  :root {
+    --ds-navy:   #1A237E;
+    --ds-blue:   #3F51B5;
+    --ds-light:  #7986CB;
+    --ds-sky:    #90CAF9;
+    --grad-ds: linear-gradient(135deg, #1A237E 0%, #3F51B5 60%, #7986CB 100%);
+    --grad-ds-glow: linear-gradient(135deg, #3F51B5 0%, #7986CB 100%);
+  }
+
+  .detail-hero h1 {
+    background: var(--grad-ds);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .kicker {
+    color: var(--ds-blue);
+    background: rgba(63, 81, 181, 0.1);
+    border-color: rgba(63, 81, 181, 0.25);
+  }
+
+  .detail-section h2::after {
+    background: var(--grad-ds-glow);
+  }
+
+  .feature-item .dot {
+    background: var(--grad-ds-glow);
+    box-shadow: 0 0 10px rgba(63, 81, 181, 0.45);
+  }
+  .feature-item::before {
+    background: radial-gradient(320px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(63, 81, 181, 0.1), transparent 80%);
+  }
+  .feature-item:hover h4 { color: var(--ds-navy); }
+
+  .arch-item::before {
+    background: radial-gradient(320px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(63, 81, 181, 0.1), transparent 80%);
+  }
+  .arch-item:hover h4 { color: var(--ds-navy); }
+  .arch-num {
+    background: var(--grad-ds-glow);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .download-panel {
+    background: linear-gradient(135deg, rgba(26, 35, 126, 0.06), rgba(63, 81, 181, 0.05));
+    border-color: rgba(63, 81, 181, 0.2);
+  }
+  .download-panel::before {
+    background: radial-gradient(380px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(63, 81, 181, 0.1), transparent 80%);
+  }
+
+  .detail-stat strong {
+    background: var(--grad-ds-glow);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  /* Disclaimer banner */
+  .ds-disclaimer {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    background: rgba(63, 81, 181, 0.08);
+    border: 1px solid rgba(63, 81, 181, 0.22);
+    border-left: 4px solid var(--ds-blue);
+    border-radius: var(--r-md);
+    padding: 16px 22px;
+    margin-bottom: 28px;
+    font-size: 0.92rem;
+    color: var(--ink-soft);
+    line-height: 1.6;
+  }
+  .ds-disclaimer .ds-icon {
+    font-size: 1.4rem;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .ds-disclaimer strong { color: var(--ds-navy); }
+
+  /* Layer badge */
+  .layer-badge {
+    display: block;
+    width: fit-content;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 3px 10px;
+    border-radius: var(--r-pill);
+    background: rgba(63, 81, 181, 0.1);
+    color: var(--ds-blue);
+    border: 1px solid rgba(63, 81, 181, 0.2);
+    margin-bottom: 6px;
+  }
+
+  /* Navy button override */
+  .btn-ds {
+    background: var(--grad-ds);
+    color: #fff;
+    box-shadow: 0 4px 18px rgba(63, 81, 181, 0.35);
+  }
+  .btn-ds:hover {
+    box-shadow: 0 6px 24px rgba(63, 81, 181, 0.5), 0 0 0 3px rgba(63, 81, 181, 0.2);
+    transform: translateY(-3px) scale(1.03);
+  }
+</style>
+<script>window.__HOLOGRAM_MODE__ = "scroll-only";</script>
+<script src="/js/hologram.js" defer></script>
+</head>
+<body>
+
+<!-- Ambient Navy Blobs -->
+<div class="bg-blobs">
+  <div class="blob blob-1 float-soft" style="background: radial-gradient(circle, #C5CAE9, transparent 70%);"></div>
+  <div class="blob blob-2 float-soft-delay" style="background: radial-gradient(circle, #BBDEFB, transparent 70%);"></div>
+  <div class="blob blob-3 float-soft-delay-2" style="background: radial-gradient(circle, #E8EAF6, transparent 70%);"></div>
+</div>
+
+<!-- Navbar -->
+<nav class="navbar">
+  <div class="container">
+    <a href="../index.html" class="brand">
+      <span class="brand-mark" style="background: var(--grad-ds);"><img src="/assets/profile.jpg" alt=""></span> Abdul Wasay
+    </a>
+    <ul class="nav-links">
+      <li><a href="../index.html#about">About</a></li>
+      <li><a href="../index.html#skills">Skills</a></li>
+      <li><a href="../index.html#projects">Projects</a></li>
+      <li><a href="../index.html#contact">Contact</a></li>
+    </ul>
+    <button class="nav-toggle" aria-label="Toggle menu">&#9776;</button>
+  </div>
+</nav>
+
+<!-- Back Button -->
+<a href="../index.html#projects" class="back-btn-float glance">&larr; Back to Projects</a>
+
+<!-- ============ HERO ============ -->
+<header class="detail-hero">
+  <div class="container">
+    <div class="breadcrumb reveal reveal-slide in-view">
+      <a href="../index.html#projects">Projects</a> / DiagnoSight AI
+    </div>
+
+    <h1 class="reveal reveal-slide in-view">DiagnoSight AI — Medical Diagnostic Assistant</h1>
+    <p class="lead reveal reveal-slide in-view">
+      An AI application that helps analyze medical images and symptoms using deep learning with TensorFlow, giving users a quick first opinion across 15+ condition categories — along with a downloadable PDF report, a support chatbot for follow-up questions, and doctor recommendations so users know exactly where to go next.
+    </p>
+
+    <!-- Quick Stats -->
+    <div class="detail-stats reveal reveal-slide in-view">
+      <div class="detail-stat"><strong>15+</strong><span>Condition Categories</span></div>
+      <div class="detail-stat"><strong>3</strong><span>Image Types</span></div>
+      <div class="detail-stat"><strong>4</strong><span>Core Modules</span></div>
+      <div class="detail-stat"><strong>PDF</strong><span>Report Generation</span></div>
+    </div>
+
+    <div class="detail-ctas reveal reveal-slide in-view">
+      <a href="https://github.com/abdulwasay-77/DiagnoSightAI-Artifical-Intelligence-Project" target="_blank" rel="noopener" class="btn btn-ds glance">View Repository</a>
+      <a href="../index.html#projects" class="btn btn-ghost glance">&larr; Back to Projects</a>
+    </div>
+  </div>
+</header>
+
+<!-- ============ THE PROBLEM ============ -->
+<section class="detail-section">
+  <div class="container">
+    <h2 class="reveal reveal-slide">The Problem</h2>
+
+    <div class="ds-disclaimer reveal reveal-slide">
+      <span class="ds-icon">🩺</span>
+      <div><strong>Note:</strong> DiagnoSight AI is an academic research project built to explore AI in healthcare. It is not a certified medical device and should not replace professional clinical diagnosis. Results are intended as educational demonstrations of deep learning applied to medical imaging.</div>
+    </div>
+
+    <p class="reveal reveal-slide" style="max-width:760px; font-size: 1.05rem; line-height: 1.75;">
+      Long wait times for diagnoses, human error in medical image interpretation, specialist shortages in underserved areas, and inconsistent diagnostic quality all slow down access to care. DiagnoSight AI provides instant analysis of X-rays, MRIs, and CT scans — cross-referencing images with reported symptoms to give evidence-based support for a first clinical opinion, and routing users to the right specialist when they need professional care.
+    </p>
+  </div>
+</section>
+
+<!-- ============ KEY FEATURES ============ -->
+<section class="detail-section">
+  <div class="container">
+    <h2 class="reveal reveal-slide">Key Features</h2>
+    <div class="feature-grid stagger">
+
+      <div class="clay-card feature-item shadow-deepen">
+        <span class="dot"></span>
+        <div>
+          <h4>Instant Medical Image Analysis</h4>
+          <p>Processes X-rays, MRIs, and CT scans in seconds using a deep learning CNN model built with TensorFlow — returning a confidence-scored prediction across trained condition categories.</p>
+        </div>
+      </div>
+
+      <div class="clay-card feature-item shadow-deepen">
+        <span class="dot"></span>
+        <div>
+          <h4>Diagnosis Tab — 15+ Conditions</h4>
+          <p>Identifies conditions across 15+ medical categories, providing a quick first opinion on likely diagnosis with probability breakdown and plain-language explanation of findings.</p>
+        </div>
+      </div>
+
+      <div class="clay-card feature-item shadow-deepen">
+        <span class="dot"></span>
+        <div>
+          <h4>AI Support Chatbot</h4>
+          <p>An in-app conversational chatbot that answers users' follow-up questions about their diagnosis results in plain language — reducing anxiety and helping users understand next steps.</p>
+        </div>
+      </div>
+
+      <div class="clay-card feature-item shadow-deepen">
+        <span class="dot"></span>
+        <div>
+          <h4>PDF Report Generation</h4>
+          <p>Generates a downloadable, formatted PDF report summarizing the diagnosis, confidence scores, image metadata, and recommended actions — for the user to keep or share with a doctor.</p>
+        </div>
+      </div>
+
+      <div class="clay-card feature-item shadow-deepen">
+        <span class="dot"></span>
+        <div>
+          <h4>Doctor &amp; Specialist Recommendations</h4>
+          <p>Based on the diagnosed condition, recommends relevant specialist types and helps users locate nearby doctors — ensuring users know exactly where to go for professional care.</p>
+        </div>
+      </div>
+
+      <div class="clay-card feature-item shadow-deepen">
+        <span class="dot"></span>
+        <div>
+          <h4>Full Account System &amp; History</h4>
+          <p>Complete user authentication, profile editing, password management, and a full saved report history — so users can revisit, compare, or share previous diagnostic sessions.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ SYSTEM ARCHITECTURE ============ -->
+<section class="detail-section">
+  <div class="container">
+    <h2 class="reveal reveal-slide">System Architecture</h2>
+    <div class="arch-list stagger">
+
+      <div class="clay-card arch-item shadow-deepen">
+        <span class="arch-num">01</span>
+        <div>
+          <span class="layer-badge">AI Core</span>
+          <h4>Deep Learning Model — TensorFlow CNN</h4>
+          <p>A Convolutional Neural Network trained on labeled medical imaging datasets to classify conditions across 15+ categories. The model is loaded once at startup and performs inference on preprocessed image tensors — returning a probability distribution across all trained classes.</p>
+        </div>
+      </div>
+
+      <div class="clay-card arch-item shadow-deepen">
+        <span class="arch-num">02</span>
+        <div>
+          <span class="layer-badge">Analysis Pipeline</span>
+          <h4>Image Preprocessing &amp; Inference Engine</h4>
+          <p>Accepts JPEG/PNG uploads of X-rays, MRIs, and CT scans. Applies normalization, resizing, and tensor conversion before passing to the CNN. Combines image predictions with symptom inputs to generate a cross-referenced diagnostic result with confidence scores.</p>
+        </div>
+      </div>
+
+      <div class="clay-card arch-item shadow-deepen">
+        <span class="arch-num">03</span>
+        <div>
+          <span class="layer-badge">Report &amp; Chat Layer</span>
+          <h4>PDF Generator &amp; NLP Chatbot</h4>
+          <p>The report generator formats diagnostic results, metadata, and recommended actions into a structured PDF. The chatbot module uses NLP to interpret follow-up questions in natural language and return contextual responses about the diagnosis — keeping users informed without overwhelming them with technical output.</p>
+        </div>
+      </div>
+
+      <div class="clay-card arch-item shadow-deepen">
+        <span class="arch-num">04</span>
+        <div>
+          <span class="layer-badge">User Layer</span>
+          <h4>Account System &amp; Report History</h4>
+          <p>Full authentication — registration, login, profile editing, password change. Each user has a persistent diagnostic history stored in the database, with the ability to view, re-download, or delete past reports. Doctor recommendations are surfaced based on diagnosed condition type and location input.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ TECH STACK ============ -->
+<section class="detail-section">
+  <div class="container">
+    <h2 class="reveal reveal-slide">Tech Stack</h2>
+    <div class="stack-pills reveal reveal-slide">
+      <span class="pill jiggle-hover">Python</span>
+      <span class="pill jiggle-hover">TensorFlow 2.x</span>
+      <span class="pill jiggle-hover">Keras</span>
+      <span class="pill jiggle-hover">Convolutional Neural Network</span>
+      <span class="pill jiggle-hover">NumPy &amp; Pillow</span>
+      <span class="pill jiggle-hover">NLP Chatbot</span>
+      <span class="pill jiggle-hover">PDF Generation (ReportLab)</span>
+      <span class="pill jiggle-hover">User Auth &amp; Database</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ GITHUB CTA PANEL ============ -->
+<section class="detail-section">
+  <div class="container">
+    <div class="clay-card download-panel shadow-deepen reveal reveal-blob">
+      <h3>Explore the Full Codebase on GitHub</h3>
+      <p>The full source — TensorFlow model, inference pipeline, chatbot, PDF generator, auth system, and UI — is available on GitHub.</p>
+      <a href="https://github.com/abdulwasay-77/DiagnoSightAI-Artifical-Intelligence-Project" target="_blank" rel="noopener" class="btn btn-ds glance">
+        View on GitHub
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <p>&copy; <span data-year></span> Abdul Wasay. All rights reserved.</p>
+  </div>
+</footer>
+
+<script>
+// Set year
+document.querySelectorAll('[data-year]').forEach(el => el.textContent = new Date().getFullYear());
+
+// Scroll reveal
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('in-view'); io.unobserve(e.target); }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.reveal, .stagger').forEach(el => io.observe(el));
+
+// Mouse spotlight
+document.querySelectorAll('.feature-item, .arch-item, .download-panel').forEach(card => {
+  card.addEventListener('mousemove', e => {
+    const r = card.getBoundingClientRect();
+    card.style.setProperty('--mouse-x', `${e.clientX - r.left}px`);
+    card.style.setProperty('--mouse-y', `${e.clientY - r.top}px`);
+  });
+});
+
+// Mobile nav toggle
+const toggle = document.querySelector('.nav-toggle');
+const links = document.querySelector('.nav-links');
+if (toggle && links) {
+  toggle.addEventListener('click', () => links.classList.toggle('nav-open'));
+  document.querySelectorAll('.nav-links a').forEach(a => a.addEventListener('click', () => links.classList.remove('nav-open')));
+}
+</script>
+</body>
+</html>
