@@ -1393,5 +1393,22 @@ html {
 
 ::selection { background: var(--violet); color: #05070D; }
 
+/* Responsive text visibility & layout helper classes */
+.mobile-text {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .desktop-text {
+    display: none;
+  }
+  .mobile-text {
+    display: inline;
+  }
+  .btn-email-address {
+    display: none;
+  }
+}
+
 @media (max-width: 720px) {
 }
