@@ -1,0 +1,283 @@
+@import "tailwindcss";
+
+/* ============================================================
+   DESIGN TOKENS
+   Source: design-system/abdul-wasay-portfolio/MASTER.md
+   Style:  Motion-Driven + Minimalism/Swiss, Dark Mode (OLED)
+   Colour: monochrome slate + single blue accent carried over
+           from the existing favicon.svg (#3DA9FC -> #5EEAD4)
+   ============================================================ */
+
+@theme {
+  /* --- Ground & surfaces --- */
+  --color-bg: #07080b;
+  --color-bg-elevated: #0c0e13;
+  --color-surface: #101319;
+  --color-surface-hover: #151922;
+
+  /* --- Lines --- */
+  --color-border: #1e232e;
+  --color-border-strong: #2c3341;
+
+  /* --- Text (all >= 4.5:1 on --color-bg) --- */
+  --color-fg: #f2f5f9;
+  --color-fg-muted: #9ba6b6;
+  --color-fg-faint: #78849a;
+
+  /* --- Accent --- */
+  --color-accent: #3da9fc;
+  --color-accent-strong: #67bdff;
+  --color-on-accent: #04070c;
+  --color-signal: #5eead4;
+  --color-warn: #ffa751;
+
+  /* --- Radii: restrained. No 32px clay pillows. --- */
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+
+  /* --- Motion (per-purpose, never one duration for everything) --- */
+  --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-out-quick: cubic-bezier(0.33, 1, 0.68, 1);
+
+  /* --- Fonts wired from next/font in layout.tsx --- */
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains), ui-monospace, "SFMono-Regular", monospace;
+}
+
+:root {
+  /* Non-Tailwind tokens. (3D colours live in src/lib/palette.ts, the
+     single source of truth the WebGL layer imports.) */
+  --ring: #3da9fc;
+
+  --space-gutter: 20px;
+  --section-y: 96px;
+
+  --header-h: 64px;
+
+  color-scheme: dark;
+}
+
+@media (min-width: 768px) {
+  :root {
+    --space-gutter: 32px;
+    --section-y: 128px;
+  }
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --space-gutter: 40px;
+    --section-y: 160px;
+  }
+}
+
+/* ============================================================
+   BASE
+   ============================================================ */
+
+/* Element defaults live in the base layer so every Tailwind utility
+   can override them. Unlayered rules would beat utilities outright. */
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    /* Lenis drives smooth scroll on capable devices; this is the
+       no-JS / reduced-motion fallback so anchors still glide. */
+    scroll-behavior: smooth;
+    scroll-padding-top: calc(var(--header-h) + 24px);
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    margin: 0;
+    background: var(--color-bg);
+    color: var(--color-fg);
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+    font-synthesis-weight: none;
+  }
+
+  /* Lenis: only active once the class is applied by the provider, so a
+     JS failure never leaves the page in a non-scrollable state. */
+  html.lenis,
+  html.lenis body {
+    height: auto;
+  }
+  .lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+  }
+  .lenis.lenis-stopped {
+    overflow: hidden;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    margin: 0;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    text-wrap: balance;
+  }
+
+  p {
+    margin: 0;
+    text-wrap: pretty;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  img,
+  svg,
+  canvas {
+    display: block;
+    max-width: 100%;
+  }
+
+  ::selection {
+    background: var(--color-accent);
+    color: var(--color-on-accent);
+  }
+
+  /* Focus: visible, never removed. */
+  :focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 3px;
+    border-radius: var(--radius-xs);
+  }
+}
+
+/* Named primitives sit in the components layer: above base, below
+   utilities — so `label text-[0.62rem]` resolves to the utility. */
+@layer components {
+  /* Skip link — first tab stop. */
+  .skip-link {
+    position: fixed;
+    top: 12px;
+    left: 12px;
+    z-index: 200;
+    padding: 10px 18px;
+    border-radius: var(--radius-sm);
+    background: var(--color-accent);
+    color: var(--color-on-accent);
+    font-size: 0.875rem;
+    font-weight: 600;
+    transform: translateY(-160%);
+    transition: transform 180ms var(--ease-out-quick);
+  }
+  .skip-link:focus-visible {
+    transform: translateY(0);
+  }
+
+  /* ============================================================
+     LAYOUT PRIMITIVES
+     ============================================================ */
+
+  .shell {
+    width: 100%;
+    max-width: 1200px;
+    margin-inline: auto;
+    padding-inline: var(--space-gutter);
+  }
+
+  .section {
+    position: relative;
+    padding-block: var(--section-y);
+  }
+
+  /* Mono eyebrow / label — the one place letter-spacing goes positive. */
+  .label {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    line-height: 1.4;
+    color: var(--color-fg-faint);
+  }
+
+  .display {
+    font-size: clamp(2.6rem, 6.2vw, 4.75rem);
+    letter-spacing: -0.045em;
+    line-height: 0.95;
+  }
+
+  .h2 {
+    font-size: clamp(1.75rem, 3.2vw, 2.75rem);
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+  }
+
+  .lead {
+    font-size: clamp(1rem, 1.6vw, 1.125rem);
+    line-height: 1.7;
+    color: var(--color-fg-muted);
+  }
+
+}
+
+/* ============================================================
+   REVEAL
+   Elements start hidden only when JS has confirmed it can reveal
+   them (`.js-motion` on <html>). Without JS, or under reduced
+   motion, content renders in its final readable state.
+   ============================================================ */
+
+.js-motion .reveal {
+  opacity: 0;
+  transform: translateY(14px);
+  will-change: opacity, transform;
+}
+
+.js-motion .reveal.is-visible {
+  opacity: 1;
+  transform: none;
+  transition:
+    opacity 380ms var(--ease-out-soft),
+    transform 380ms var(--ease-out-soft);
+}
+
+.js-motion .reveal.is-visible[data-delay="1"] { transition-delay: 60ms; }
+.js-motion .reveal.is-visible[data-delay="2"] { transition-delay: 120ms; }
+.js-motion .reveal.is-visible[data-delay="3"] { transition-delay: 180ms; }
+.js-motion .reveal.is-visible[data-delay="4"] { transition-delay: 240ms; }
+.js-motion .reveal.is-visible[data-delay="5"] { transition-delay: 300ms; }
+.js-motion .reveal.is-visible[data-delay="6"] { transition-delay: 360ms; }
+.js-motion .reveal.is-visible[data-delay="7"] { transition-delay: 420ms; }
+
+/* ============================================================
+   REDUCED MOTION
+   Final readable state, immediately. No scrub, no parallax.
+   ============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    transition-delay: 0ms !important;
+    scroll-behavior: auto !important;
+  }
+  .reveal,
+  .js-motion .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}

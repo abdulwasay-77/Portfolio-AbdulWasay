@@ -2,10 +2,33 @@
 # only ever linked from the download button, not from this repo
 downloads/
 
+# Archived copy of the previous static site, kept locally for reference
+# during the Next.js migration. Not served, not part of the app.
+legacy/
+
+# Dependencies
+node_modules/
+
+# Next.js build output
+.next/
+out/
+build/
+next-env.d.ts
+*.tsbuildinfo
+
+# Vercel
+.vercel
+
+# Local env files - secrets (STATS_SECRET, Redis tokens) live here or in
+# Vercel project settings, never in the repo
+.env
+.env.*
+!.env.example
+
+# Logs
+npm-debug.log*
+*.log
+
 # OS/editor junk
 .DS_Store
 Thumbs.db
-
-# Local env files (if you ever add any)
-.env
-.env.local
